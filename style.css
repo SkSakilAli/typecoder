@@ -1,0 +1,36 @@
+* {
+    color: white;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+}
+
+header {
+    border-bottom: 1px solid #201E1E;
+}
+
+#heading {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: inter;
+    font-style: italic;
+}
+
+#hero {
+    width: 45%;
+    float: left;
+    padding: 10%;
+    font-family: Megrim;
+}
+
+#hero h2 {
+    font-size: 4vw;
+}
+
+#hero p {
+    font-size: 2.5vw;
+    margin: 0 auto;
+}
