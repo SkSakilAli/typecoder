@@ -26,16 +26,39 @@ landBtn.addEventListener("click", () => {
     const navThree = document.createElement("a");
     headerdiv.appendChild(navThree);
     navThree.setAttribute("id", "navThree");
-    navThree.textContent = 'Selected '+ language+"-" +selectedTime;
+    navThree.textContent = 'Selected ' + language + "-" + selectedTime;
 
     const belowHeader = document.createElement("div");
     belowHeader.setAttribute("id", "belowHeader");
     document.body.appendChild(belowHeader);
-    const selectLanguage = document.createElement("ul");
-    selectLanguage.setAttribute("id","selectLanguage");
+    const selectLanguage = document.createElement("div");
+    selectLanguage.setAttribute("id", "selectLanguage");
     belowHeader.appendChild(selectLanguage);
-    const selectLanguageC = document.createElement("li");
+    const selectLanguageC = document.createElement("img");
     selectLanguage.appendChild(selectLanguageC);
+    selectLanguageC.setAttribute("src", "assets/c-logo.png");
+    selectLanguageC.setAttribute("class","langimg");
+
+    const selectLanguageJs = document.createElement("img");
+    selectLanguage.appendChild(selectLanguageJs);
+    selectLanguageJs.setAttribute("src", "assets/javascript-logo.png");
+    selectLanguageJs.setAttribute("class","langimg");
+
+    const selectLanguagePython = document.createElement("img");
+    selectLanguage.appendChild(selectLanguagePython);
+    selectLanguagePython.setAttribute("src", "assets/python-logo-only.png");
+     selectLanguagePython.setAttribute("class","langimg");
+
+
+     const selectLanguageJava = document.createElement("img");
+    selectLanguage.appendChild(selectLanguageJava);
+    selectLanguageJava.setAttribute("src", "assets/java-logo.png");
+     selectLanguageJava.setAttribute("class","langimg");
+
+    
+
+
+ 
 
 
 });

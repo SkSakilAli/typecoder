@@ -122,3 +122,31 @@ header {
 
 
 }
+
+#belowheader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+#selectLanguage {
+    width: 20%;
+    margin: 0 0%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 2% 2%;
+    grid-column-gap: 10%;
+}
+
+.langimg {
+    width: 85%;
+    padding: 30%;
+
+}
+
+.langimg:hover {
+    background-color: white;
+    width: 95%;
+    border-radius: 50%;
+
+}
