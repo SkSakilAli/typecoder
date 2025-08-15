@@ -123,14 +123,14 @@ header {
 
 }
 
-#belowheader {
+#belowHeader {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 
 }
 
 #selectLanguage {
-    width: 20%;
+    width: 100%;
     margin: 0 0%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -139,14 +139,35 @@ header {
 }
 
 .langimg {
-    width: 85%;
+    width: 60%;
     padding: 30%;
 
 }
 
 .langimg:hover {
     background-color: white;
-    width: 95%;
+    width: 75%;
     border-radius: 50%;
 
+}
+
+#selectTime {
+    justify-self: center;
+    font-size: 1vw;
+    list-style: none;
+
+}
+
+.time {
+    padding: 1vw;
+    background-color: whitesmoke;
+    color: black;
+    border: 1px solid black;
+}
+
+.time:hover {
+    padding: 1vw;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
 }

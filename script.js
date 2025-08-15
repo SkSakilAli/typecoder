@@ -37,28 +37,49 @@ landBtn.addEventListener("click", () => {
     const selectLanguageC = document.createElement("img");
     selectLanguage.appendChild(selectLanguageC);
     selectLanguageC.setAttribute("src", "assets/c-logo.png");
-    selectLanguageC.setAttribute("class","langimg");
+    selectLanguageC.setAttribute("class", "langimg");
 
     const selectLanguageJs = document.createElement("img");
     selectLanguage.appendChild(selectLanguageJs);
     selectLanguageJs.setAttribute("src", "assets/javascript-logo.png");
-    selectLanguageJs.setAttribute("class","langimg");
+    selectLanguageJs.setAttribute("class", "langimg");
 
     const selectLanguagePython = document.createElement("img");
     selectLanguage.appendChild(selectLanguagePython);
     selectLanguagePython.setAttribute("src", "assets/python-logo-only.png");
-     selectLanguagePython.setAttribute("class","langimg");
+    selectLanguagePython.setAttribute("class", "langimg");
 
 
-     const selectLanguageJava = document.createElement("img");
+    const selectLanguageJava = document.createElement("img");
     selectLanguage.appendChild(selectLanguageJava);
     selectLanguageJava.setAttribute("src", "assets/java-logo.png");
-     selectLanguageJava.setAttribute("class","langimg");
+    selectLanguageJava.setAttribute("class", "langimg");
 
-    
+    //Selecting Time 
+    const selectTime = document.createElement("ul");
+    selectTime.setAttribute("id", "selectTime");
+    belowHeader.appendChild(selectTime);
+
+    const selectTimeOneMin = document.createElement("li");
+    selectTime.appendChild(selectTimeOneMin);
+    selectTimeOneMin.setAttribute("id", "selectTimeOneMin");
+    selectTimeOneMin.setAttribute("class", "time");
+    selectTimeOneMin.textContent = "1 Minute - 60 Seconds";
 
 
- 
+    const selectTimeTwoMin = document.createElement("li");
+    selectTime.appendChild(selectTimeTwoMin);
+    selectTimeTwoMin.setAttribute("id", "selectTimeTwoMin");
+    selectTimeTwoMin.setAttribute("class", "time");
+    selectTimeTwoMin.textContent = "2 Minute - 120 Seconds";
+
+
+    const selectTimeThreeMin = document.createElement("li");
+    selectTime.appendChild(selectTimeThreeMin);
+    selectTimeThreeMin.setAttribute("id", "selectTimeThreeMin");
+    selectTimeThreeMin.setAttribute("class", "time");
+    selectTimeThreeMin.textContent = "3 Minute - 180 Seconds";
+
 
 
 });
