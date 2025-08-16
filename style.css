@@ -132,7 +132,8 @@ header {
 #selectLanguage {
     width: 100%;
     margin: 0 0%;
-    display: grid;
+    /*  display: grid; */
+    display: none;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 2% 2%;
     grid-column-gap: 10%;
@@ -170,4 +171,38 @@ header {
     background-color: black;
     color: white;
     border: 1px solid white;
+}
+
+#inputDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 80%;
+    margin: 10vw auto;
+    border: 1vw solid white;
+}
+
+.inputDivElement {
+    height: 40vw;
+    grid-column: 1;
+    grid-row: 1;
+
+}
+
+#inputDivCode {}
+
+#inputDivKey {
+    opacity: 70%;
+    z-index: 1;
+    color: green;
+}
+
+#inputDivCode code {
+    white-space: pre-wrap;
+    overflow: scroll;
+}
+
+#inputDivCode {
+    overflow: scroll;
+    white-space: pre-wrap;
 }

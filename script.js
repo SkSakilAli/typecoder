@@ -55,10 +55,13 @@ landBtn.addEventListener("click", () => {
     selectLanguageJava.setAttribute("src", "assets/java-logo.png");
     selectLanguageJava.setAttribute("class", "langimg");
 
+    selectLanguage.setAttribute("hidden", "true");
+
     //Selecting Time 
     const selectTime = document.createElement("ul");
     selectTime.setAttribute("id", "selectTime");
     belowHeader.appendChild(selectTime);
+    selectTime.setAttribute("hidden", "true");
 
     const selectTimeOneMin = document.createElement("li");
     selectTime.appendChild(selectTimeOneMin);
@@ -81,5 +84,32 @@ landBtn.addEventListener("click", () => {
     selectTimeThreeMin.textContent = "3 Minute - 180 Seconds";
 
 
+    const selectTimeFiveMin = document.createElement("li");
+    selectTime.appendChild(selectTimeFiveMin);
+    selectTimeFiveMin.setAttribute("id", "selectTimeFiveMin");
+    selectTimeFiveMin.setAttribute("class", "time");
+    selectTimeFiveMin.textContent = "5 Minute - 300 Seconds";
+
+    //Genrating Input div 
+    const inputDiv = document.createElement("div");
+    inputDiv.setAttribute("id", "inputDiv");
+    document.body.appendChild(inputDiv);
+
+    const inputDivCode = document.createElement("div");
+    inputDivCode.setAttribute("id", "inputDivCode");
+    inputDivCode.setAttribute("class", "inputDivElement");
+    inputDiv.appendChild(inputDivCode);
+
+    const inputDivKey = document.createElement("div");
+    inputDivKey.setAttribute("id", "inputDivKey");
+    inputDivKey.setAttribute("class", "inputDivElement");
+    inputDiv.appendChild(inputDivKey);
+    inputDivKey.textContent = "";
+
+    inputDivCode.textContent = randomCodeC;
 
 });
+
+import { randomCodeC } from "/jsmodules/codeGenerationC.js";
+console.log(randomCodeC);
+
