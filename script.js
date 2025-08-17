@@ -2,11 +2,18 @@ const landBtn = document.getElementById("mainbtn");
 let selectedImage;
 let selectedTime = "1 min";
 let language = "C";
-
+let time = 60;
 
 
 //Deleting all elements except header on button click
 landBtn.addEventListener("click", () => {
+    let n=0;
+    let randomCode;
+    let randomCodeWords=[];
+    let wordNumber=0;
+    let WordCorrect=0;
+    let WordIncorrect= 0;
+
     document.body.removeChild(document.getElementById("main"));
     document.body.removeChild(document.getElementById("languages"));
     const headerdiv = document.createElement("div");
@@ -18,7 +25,7 @@ landBtn.addEventListener("click", () => {
     navOne.setAttribute("id", "navOne");
     navOne.textContent = "Select Preferred Language";
 
-    const navTwo = document.createElement("a");
+    const navTwo = document.createElement("button");
     headerdiv.appendChild(navTwo);
     navTwo.setAttribute("id", "navTwo");
     navTwo.textContent = "Select Preferred Time";
@@ -106,25 +113,70 @@ landBtn.addEventListener("click", () => {
     inputDiv.appendChild(inputDivKey);
     inputDivKey.textContent = "";
 
-    inputDivCode.textContent = randomCodeC;
+    inputDivCode.textContent = "Fetching Code For You ..";
     
 
 
 //Event Listeners
 let selectLanguageState = false;
+let selectTimeState = false;
 navOne.addEventListener("click", ()=>{
      if(!selectLanguageState){ selectLanguage.style ="display:grid";
                                     selectLanguageState=true;}
-     else{ selectLanguage.style="display:none;|"; selectLanguageState = false;}
+     else{ selectLanguage.style="display:none;"; selectLanguageState = false;}
     
 
 });
 
-//
+navTwo.addEventListener("click", ()=>{
+     if(!selectTimeState){ selectTime.style ="display:grid";
+                                    selectTimeState=true;}
+     else{ selectTime.style="display:none;"; selectTimeState = false;}
+     //event Listeners for Individual options of the Listeners
+     selectTimeOneMin.addEventListener("click", ()=> time = 60);
+     selectTimeTwoMin.addEventListener("click", ()=> time = 120);
+     selectThreeMin.addEventListener("click", ()=> time = 180);
+     selectTimeFiveMin.addEventListener("click", ()=> time = 300);
+
+
+
+    
+
 });
-import { randomCodeC } from "/jsmodules/codeGenerationC.js";
-let randomCode = randomCodeC.split("\n");
+
+//Random Code codeGeneration
+async function randomC(){
+randomCode = await import ("/jsmodules/codeGenerationC.js");
+randomCode = randomCode.randomCodeC.split("\n");
 console.log(randomCode);
+document.getElementById("inputDivCode").textContent = randomCode[0]+"\n"+randomCode[1]+"\n"+randomCode[2]+"\n"+randomCode[3];
+}
+
+function randomCodeWordUpdate(){
+        randomCodeWords = randomCode[n].split(" ");;
+        console.log(randomCodeWords);
+}
+
+randomC();
+//Update visible code 
+function updateCode(){
+inputDivCode.textContent = randomCode[n]+"\n"+randomCode[n+1]+"\n"+randomCode[n+2]+"\n"+randomCode[n+3];
+randomCodeWordUpdate();
+n++;
+}
+//Event Listeners for keypress
+addEventListener("keypress", (event)=>{
+   console.log(event.key);
+    let key = event.key;
+    if(key=="Enter"){
+        updateCode();
+    }
+    else{
+          console.log(randomCode[n[wordNumber[i]]);
+    }
+});
+//END
+});
 
 
 

@@ -120,6 +120,13 @@ header {
     margin: 10px;
     justify-self: center;
     align-items: center;
+    background-color: black;
+    border: none;
+
+}
+
+#navTwo:hover {
+    text-decoration: underline;
 }
 
 #navThree {
@@ -161,9 +168,10 @@ header {
 
 #selectTime {
     justify-self: center;
+    align-self: center;
     font-size: 1vw;
     list-style: none;
-
+    grid-column: 2;
 }
 
 .time {
