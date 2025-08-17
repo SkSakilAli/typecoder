@@ -214,10 +214,10 @@ header {
 }
 
 #inputDivKey {
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #inputDivCode {
-    overflow: scroll;
+    overflow: hidden;
     white-space: pre-wrap;
 }
