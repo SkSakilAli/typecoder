@@ -13,7 +13,7 @@ landBtn.addEventListener("click", () => {
     document.body.appendChild(headerdiv);
     headerdiv.setAttribute("id", "headerdiv");
 
-    const navOne = document.createElement("a");
+    const navOne = document.createElement("button");
     headerdiv.append(navOne);
     navOne.setAttribute("id", "navOne");
     navOne.textContent = "Select Preferred Language";
@@ -107,9 +107,25 @@ landBtn.addEventListener("click", () => {
     inputDivKey.textContent = "";
 
     inputDivCode.textContent = randomCodeC;
+    
+
+
+//Event Listeners
+let selectLanguageState = false;
+navOne.addEventListener("click", ()=>{
+     if(!selectLanguageState){ selectLanguage.style ="display:grid";
+                                    selectLanguageState=true;}
+     else{ selectLanguage.style="display:none;|"; selectLanguageState = false;}
+    
 
 });
 
+//
+});
 import { randomCodeC } from "/jsmodules/codeGenerationC.js";
-console.log(randomCodeC);
+let randomCode = randomCodeC.split("\n");
+console.log(randomCode);
+
+
+
 

@@ -100,6 +100,13 @@ header {
     justify-self: left;
     padding: 0 1vw;
     align-items: center;
+    background-color: black;
+    border: none;
+
+}
+
+#navOne:hover {
+    text-decoration: underline;
 }
 
 #headerdiv {
@@ -179,14 +186,15 @@ header {
     grid-template-rows: 1fr;
     width: 80%;
     margin: 10vw auto;
-    border: 1vw solid white;
+    border: 1px solid white;
 }
 
 .inputDivElement {
-    height: 40vw;
+    height: 10vw;
     grid-column: 1;
     grid-row: 1;
-
+    font-size: 150%;
+    margin: 1vw 2vw;
 }
 
 #inputDivCode {}
@@ -197,8 +205,7 @@ header {
     color: green;
 }
 
-#inputDivCode code {
-    white-space: pre-wrap;
+#inputDivKey {
     overflow: scroll;
 }
 
