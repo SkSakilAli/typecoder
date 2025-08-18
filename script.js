@@ -39,7 +39,7 @@ landBtn.addEventListener("click", () => {
     const navThree = document.createElement("a");
     headerdiv.appendChild(navThree);
     navThree.setAttribute("id", "navThree");
-    navThree.textContent = 'Selected ' + language + "-" + selectedTime;
+    navThree.textContent = 'Selected: Language- ' + language + " Time- 1 min";
 
     const belowHeader = document.createElement("div");
     belowHeader.setAttribute("id", "belowHeader");
@@ -99,7 +99,7 @@ landBtn.addEventListener("click", () => {
 
     const selectTimeFiveMin = document.createElement("li");
     selectTime.appendChild(selectTimeFiveMin);
-    selectTimeFiveMin.setAttribute("id", "selectTimeFiveMin");
+    selectTimeFiveMin.setAttribute("id", "button");
     selectTimeFiveMin.setAttribute("class", "time");
     selectTimeFiveMin.textContent = "5 Minute - 300 Seconds";
 
@@ -126,6 +126,10 @@ landBtn.addEventListener("click", () => {
     inputDiv.appendChild(timerElement);
     timerElement.textContent = "Typing Not Started";
 
+    const resultDiv = document.createElement("div");
+    resultDiv.setAttribute("id", "resultDiv");
+
+
 
     //Event Listeners
     let selectLanguageState = false;
@@ -147,10 +151,13 @@ landBtn.addEventListener("click", () => {
         }
         else { selectTime.style = "display:none;"; selectTimeState = false; }
         //event Listeners for Individual options of the Listeners
-        selectTimeOneMin.addEventListener("click", () => time = 60);
-        selectTimeTwoMin.addEventListener("click", () => time = 120);
-        selectThreeMin.addEventListener("click", () => time = 180);
-        selectTimeFiveMin.addEventListener("click", () => time = 300);
+        selectTimeOneMin.addEventListener("click", () => {
+            timeLimit = 60; selectTime.setAttribute("hidden", "true");
+        });
+        selectTimeOneMin.addEventListener("click", () => { timeLimit = 60; selectTime.style = "display:none"; navThree.textContent = "Selected: " + "Language - " + language + " Time - 1 min"; });
+        selectTimeTwoMin.addEventListener("click", () => { timeLimit = 120; selectTime.style = "display:none;"; navThree.textContent = "Selected: " + "Language - " + language + " Time - 2 min"; });
+        selectTimeThreeMin.addEventListener("click", () => { timeLimit = 180; selectTime.style = "display:none;"; navThree.textContent = "Selected: " + "Language - " + language + " Time - 3 min"; });
+        selectTimeFiveMin.addEventListener("click", () => { timeLimit = 300; selectTime.style = "display:none;"; navThree.textContent = "Selected: " + "Language - " + language + " Time - 5 min"; });
 
 
 
@@ -183,7 +190,6 @@ landBtn.addEventListener("click", () => {
 
     }
     async function randomCodeWordUpdate() {
-        //  randomCodeWords = randomCode[n].split(" ");
         console.log("1\n", randomCode);
         console.log("Second Function");
         randomCodeWords = await randomCode[n].split(" ");
@@ -236,11 +242,12 @@ landBtn.addEventListener("click", () => {
             if (time === timeLimit) {
                 removeEventListener("keypress", keypressCapture);
                 clearInterval(setIntervalId);
-                timerElement.textContent = "Time Out";
-                document.createElement("button").setAttributes("id", "viewResult");
+                timerElement.textContent = "Time Out - Scroll Down To View Result";
+                timerElement.style = "background-color: green;";
             }
             else {
-                timerElement.textContent = time;
+                timerElement.textContent = "Time : 0" + time + " Seconds Out Of " + timeLimit + " Seconds";
+
             }
         }, 1000);
     }
