@@ -2,7 +2,9 @@ const landBtn = document.getElementById("mainbtn");
 let selectedImage;
 let selectedTime = "1 min";
 let language = "C";
-let time = 60;
+let time = 0;
+let timeLimit = 60;
+let timerState = false;
 
 
 //Deleting all elements except header on button click
@@ -15,6 +17,8 @@ landBtn.addEventListener("click", () => {
     let wordCorrect = 0;
     let wordIncorrect = 0;
     let textContentAbove = "";
+    let keypressCapture;
+    let timeUpdate;
 
     document.body.removeChild(document.getElementById("main"));
     document.body.removeChild(document.getElementById("languages"));
@@ -117,8 +121,10 @@ landBtn.addEventListener("click", () => {
 
     inputDivCode.textContent = "Fetching Code For You ..";
 
-    const startbtn = document.body.createElement("button");
-    startbtn.setAttribute("id", "startbtn");
+    const timerElement = document.createElement("span");
+    timerElement.setAttribute("id", "timerElement");
+    inputDiv.appendChild(timerElement);
+    timerElement.textContent = "Typing Not Started";
 
 
     //Event Listeners
@@ -185,8 +191,10 @@ landBtn.addEventListener("click", () => {
     }
 
     //Event Listeners for keypress
-    addEventListener("keypress", (event) => {
+    addEventListener("keypress", keypressCapture = (event) => {
         console.log(event.key);
+        if (!timerState) { timer(); timerState = true; }
+
         let key = event.key;
         if (key == "Enter") {
             updateCode();
@@ -222,6 +230,20 @@ landBtn.addEventListener("click", () => {
         }
         console.log("key", event.key);
     });
+    function timer() {
+        const setIntervalId = setInterval(timeUpdate = () => {
+            time++;
+            if (time === timeLimit) {
+                removeEventListener("keypress", keypressCapture);
+                clearInterval(setIntervalId);
+                timerElement.textContent = "Time Out";
+                document.createElement("button").setAttributes("id", "viewResult");
+            }
+            else {
+                timerElement.textContent = time;
+            }
+        }, 1000);
+    }
     //END
 });
 
