@@ -175,17 +175,31 @@ landBtn.addEventListener("click", funMainPage = () => {
     });
 
     //Random Code codeGeneration
-    async function randomC() {
-        randomCode = await import("/jsmodules/codeGenerationC.js")
-        randomCode = randomCode.randomCodeC.split("\n");
-        //console.log(randomCode);
+    async function randomC(languagemenu) {
+        console.log(languagemenu);
+      switch(languagemenu){
+          case "c": randomCode = await import("/jsmodules/codeGenerationC.js");
+                     language = "C";
+                     break;
+          case "js": randomCode = await import("/jsmodules/codeGenerationJS.js");
+                     language = "JavsScript";
+                     break;
+          case "py": randomCode = await import("/jsmodules/codeGenerationPY.js");
+                     language = "Python";
+                     break;
+         case "java": randomCode = await import("/jsmodules/codeGenerationJA.js");
+                     language = "Java";
+                     break;
+         default: randomCode = await import("/jsmodules/codeGenerationC.js");
+      }
+        console.log(randomCode.randomCodeC); 
+        randomCode = await randomCode.randomCodeC.split("\n");
         document.getElementById("inputDivCode").textContent = randomCode[0] + "\n" + randomCode[1] + "\n" + randomCode[2] + "\n" + randomCode[3];
-        console.log("first Function");
-        //console.log(randomCode);
+        navThree.textContent = "Selected: Language- "+language+" Time - "+timeLimit;
 
     }
-    async function fix() {
-        await randomC();
+    async function fix(languagemenu) {
+        await randomC(languagemenu);
         await randomCodeWordUpdate();
     }
     fix();
@@ -199,12 +213,13 @@ landBtn.addEventListener("click", funMainPage = () => {
 
     }
     async function randomCodeWordUpdate() {
-        console.log("1\n", randomCode);
-        console.log("Second Function");
         randomCodeWords = await randomCode[n].split(" ");
         wordNumber = 0;
     }
-
+   selectLanguageC.addEventListener("click", ()=>fix("c"));
+   selectLanguageJs.addEventListener("click", ()=>fix("js"));
+   selectLanguagePython.addEventListener("click",()=> fix("py"))
+   selectLanguageJava.addEventListener("click", ()=>fix("java"));
     //Event Listeners for keypress
     addEventListener("keypress", keypressCapture = (event) => {
         document.getElementById("whichKeyPress").textContent = event.key;
@@ -225,7 +240,6 @@ landBtn.addEventListener("click", funMainPage = () => {
 
         }
         else if (key == " ") {
-            console.log(characterNumber, randomCodeWords[wordNumber].length);
             if (!(characterNumber < randomCodeWords[wordNumber].length)) {
                 wordState ? wordCorrect++ : wordIncorrect++;
                 wordState = true;
