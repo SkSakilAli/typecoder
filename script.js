@@ -16,6 +16,9 @@ landBtn.addEventListener("click", () => {
     let characterNumber = 0;
     let wordCorrect = 0;
     let wordIncorrect = 0;
+    let characterCorrect = 0;
+    let characterIncorrect = 0;
+    let numberOfLines = 0;
     let textContentAbove = "";
     let keypressCapture;
     let timeUpdate;
@@ -129,6 +132,12 @@ landBtn.addEventListener("click", () => {
     const resultDiv = document.createElement("div");
     resultDiv.setAttribute("id", "resultDiv");
 
+    const whichKeyPress = document.createElement("span");
+    whichKeyPress.setAttribute("id", "whichKeyPress");
+    inputDiv.appendChild(whichKeyPress);
+    whichKeyPress.textContent = "Enter";
+
+
 
 
     //Event Listeners
@@ -198,7 +207,7 @@ landBtn.addEventListener("click", () => {
 
     //Event Listeners for keypress
     addEventListener("keypress", keypressCapture = (event) => {
-        console.log(event.key);
+        document.getElementById("whichKeyPress").textContent = event.key;
         if (!timerState) { timer(); timerState = true; }
 
         let key = event.key;
@@ -244,6 +253,7 @@ landBtn.addEventListener("click", () => {
                 clearInterval(setIntervalId);
                 timerElement.textContent = "Time Out - Scroll Down To View Result";
                 timerElement.style = "background-color: green;";
+                whichKeyPress.style = "display:none";
             }
             else {
                 timerElement.textContent = "Time : 0" + time + " Seconds Out Of " + timeLimit + " Seconds";
