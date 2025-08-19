@@ -243,6 +243,41 @@ header {
 #whichKeyPress {
     border: 1px solid white;
     padding: 0.5vw 1vw;
-
     justify-self: center;
+}
+
+#resultDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 70%;
+    margin: 10vw auto;
+    align-items: center;
+    justify-items: left;
+    border: 1px solid white;
+    padding: 2vw 0;
+
+}
+
+#characterPerMin {
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: 2vw;
+}
+
+#wordPerMin {
+    grid-column: 1;
+    grid-row: 2;
+    padding-left: 2vw;
+}
+
+#sentencePerMin {
+    grid-column: 1;
+    grid-row: 3;
+    padding-left: 2vw;
+}
+
+#accuracydiv {
+    grid-column: 2/3;
+    grid-row: 1/4;
 }

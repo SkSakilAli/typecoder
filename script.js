@@ -1,14 +1,13 @@
 const landBtn = document.getElementById("mainbtn");
-let selectedImage;
-let selectedTime = "1 min";
-let language = "C";
-let time = 0;
-let timeLimit = 60;
-let timerState = false;
+let funMainPage;
 
 
 //Deleting all elements except header on button click
-landBtn.addEventListener("click", () => {
+landBtn.addEventListener("click", funMainPage = () => {
+    let language = "C";
+    let time = 0;
+    let timeLimit = 60;
+    let timerState = false;   
     let n = 0;
     let randomCode = [];
     let randomCodeWords = [];
@@ -16,6 +15,7 @@ landBtn.addEventListener("click", () => {
     let characterNumber = 0;
     let wordCorrect = 0;
     let wordIncorrect = 0;
+    let wordState = true;
     let characterCorrect = 0;
     let characterIncorrect = 0;
     let numberOfLines = 0;
@@ -212,6 +212,9 @@ landBtn.addEventListener("click", () => {
 
         let key = event.key;
         if (key == "Enter") {
+            numberOfLines++;
+            wordState ? wordCorrect++ : wordIncorrect++;
+            wordState = true;
             updateCode();
             randomCodeWordUpdate();
             wordNumber = 0;
@@ -222,16 +225,21 @@ landBtn.addEventListener("click", () => {
 
         }
         else if (key == " ") {
-            wordNumber++;
-            characterNumber = 0;
-            textContentAbove = textContentAbove + " ";
-            inputDivKey.textContent = textContentAbove;
-            inputDivKey.style = "color:green";
+            console.log(characterNumber, randomCodeWords[wordNumber].length);
+            if (!(characterNumber < randomCodeWords[wordNumber].length)) {
+                wordState ? wordCorrect++ : wordIncorrect++;
+                wordState = true;
+                wordNumber++;
+                characterNumber = 0;
+                textContentAbove = textContentAbove + " ";
+                inputDivKey.textContent = textContentAbove;
+                inputDivKey.style = "color:green";
+            }
 
         }
         else {
             if (randomCodeWords[wordNumber][characterNumber] == event.key) {
-                wordCorrect++;
+                characterCorrect++;
                 textContentAbove = textContentAbove + event.key;
                 inputDivKey.textContent = textContentAbove;
                 characterNumber++;
@@ -239,7 +247,8 @@ landBtn.addEventListener("click", () => {
             }
             else {
                 inputDivKey.style = "color:red;"
-                wordIncorrect++;
+                characterIncorrect++;
+                wordState = false;
             };
 
         }
@@ -254,12 +263,83 @@ landBtn.addEventListener("click", () => {
                 timerElement.textContent = "Time Out - Scroll Down To View Result";
                 timerElement.style = "background-color: green;";
                 whichKeyPress.style = "display:none";
+                createResult();
+                console.log(wordCorrect, " ", wordIncorrect);
+                console.log(characterCorrect, characterIncorrect);
+                console.log(numberOfLines);
             }
             else {
                 timerElement.textContent = "Time : 0" + time + " Seconds Out Of " + timeLimit + " Seconds";
 
             }
         }, 1000);
+    }
+
+    function createResult() {
+
+        const resultDiv = document.createElement("div");
+        resultDiv.setAttribute("id", "resultDiv");
+        document.body.appendChild(resultDiv);
+
+        const characterPerMin = document.createElement("div");
+        characterPerMin.setAttribute("id", "characterPerMin");
+        resultDiv.appendChild(characterPerMin);
+        const characterPerMinValue = document.createElement("span");
+        characterPerMin.appendChild(characterPerMinValue);
+        const characterPerMinText = document.createElement("span");
+        characterPerMin.appendChild(characterPerMinText);
+
+        characterPerMinValue.textContent = (characterCorrect + characterIncorrect) / (timeLimit / 60);
+        characterPerMinText.textContent = " Characters Per Minute";
+
+        characterPerMinValue.style="font-size:300%;font-weight: bold;";
+
+        const wordPerMin = document.createElement("div");
+        wordPerMin.setAttribute("id", "wordPerMin");
+        resultDiv.appendChild(wordPerMin);
+        const wordPerMinValue = document.createElement("span");
+        wordPerMin.appendChild(wordPerMinValue);
+        const wordPerMinText = document.createElement("span");
+        wordPerMin.appendChild(wordPerMinText);
+        wordPerMinValue.style="font-size:300%;font-weight: bold;";
+
+        wordPerMinValue.textContent = (wordCorrect + wordIncorrect) / (timeLimit / 60);
+        wordPerMinText.textContent = " Words Per Minute";
+
+        const sentencePerMin = document.createElement("div");
+        sentencePerMin.setAttribute("id", "sentencePerMin");
+        resultDiv.appendChild(sentencePerMin);
+        const sentencePerMinValue = document.createElement("span");
+        sentencePerMin.appendChild(sentencePerMinValue);
+        const sentencePerMinText = document.createElement("span");
+        sentencePerMin.appendChild(sentencePerMinText);
+        sentencePerMinValue.style="font-size:300%;font-weight: bold;"; 
+
+        sentencePerMinValue.textContent = numberOfLines / (timeLimit / 60);
+        sentencePerMinText.textContent = " Lines Per Minute";
+
+        const accuracydiv = document.createElement("div");
+        accuracydiv.setAttribute("id", "accuracydiv");
+        resultDiv.appendChild(accuracydiv);
+        const accuracydivValue = document.createElement("span");
+        accuracydiv.appendChild(accuracydivValue);
+        const accuracydivText = document.createElement("span");
+        accuracydiv.appendChild(accuracydivText);
+
+        accuracydivValue.textContent = Math.round((characterCorrect*100)/ (characterCorrect + characterIncorrect))+"%";
+        accuracydivText.textContent = " Accuracy";
+        accuracydivValue.style="font-size:600%;font-weight: bold;";
+
+/*        const retryBtn = document.createElement("button");
+        retryBtn.setAttribute("id","retryBtn");
+        retryBtn.textContent=" Retake ";
+        resultDiv.appendChild(retryBtn);
+        retryBtn.addEventListener("click", funMainPage());
+
+  Retake button planned for latter
+*/
+
+
     }
     //END
 });
